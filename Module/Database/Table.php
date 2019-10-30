@@ -1,5 +1,6 @@
 <?php
 
+namespace Module\Database;
 //선언
 class Table
 {
@@ -8,14 +9,16 @@ class Table
     public $Database;
 
 
-    public function __construct($database){
-        echo "테이블 클래스 생성<br>";
+    public function __construct($database)
+    {
+        // echo "테이블 클래스 생성<br>";
         $this->Database = $database;
     }
 
-    public function createTable($name, array $fileds){
+    public function createTable($name, array $fileds)
+    {
 
-        echo "테이블을 생성합니다 <br>";
+        // echo "테이블을 생성합니다 <br>";
        
         $query = "
         CREATE TABLE `".$name."` (
@@ -25,7 +28,8 @@ class Table
         // `LastName` varchar(255),
         // `FirstName` varchar(255),
 
-        foreach($fileds as $key => $value){
+        foreach($fileds as $key => $value)
+        {
             $query .= " `$key` $value,";
         }
 

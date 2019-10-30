@@ -1,4 +1,6 @@
 <?php
+
+namespace Module\Database;
 //밑줄 구분 스네이크 케이스 주로 함수
 //뒷문장 대문자 카멜 케이스 주로 메소드
 //맨앞에 대문자는 주로 클래스
@@ -30,16 +32,17 @@ class Database
     { //생성자 메소드(함수)
 
         //자기 파일에 테이블에다가 클래스 테이블에 그 자신을 가리킨다??
-        $this->Table = new Table($this); //이걸 쓰면 setTable을 안쓰고 get으로 넘어감
+        $this->Table = new \Module\Database\Table($this); //이걸 쓰면 setTable을 안쓰고 get으로 넘어감
 
-        echo "클래스 생성 <br>";
-        $this->connect = new mysqli($config['host'], $config['user'], $config['passwd'], $config['database']);
+        // echo "클래스 생성 <br>";
+        // \ == 전역 네임스페이스
+        $this->connect = new \mysqli($config['host'], $config['user'], $config['passwd'], $config['database']);
         
         //성공 : connect_errno = 0
         //실패 : connect_errno = 1
 
         if(!$this->connect->connect_errno){
-            echo "DB 접속 성공이에요<br>";
+            // echo "DB 접속 성공이에요<br>";
         }else{
             echo "접속이 안돼요 ㅜ"."<br>";
         }
@@ -49,7 +52,7 @@ class Database
     {
         $result = mysqli_query($this->connect, $query);
         if($result){
-            echo "쿼리 성공". "<br>";
+            // echo "쿼리 성공". "<br>";
         }else{
             print "쿼리 실패". "<br>";
         }
@@ -64,8 +67,8 @@ class Database
         $result = $this->queryExecute($query); //db에서 생성한 Database에서 queryExecute를 호출
 
         $count = mysqli_num_rows($result); //테이블 갯수나오는 함수
-        echo "테이블 갯수는 = ".$count;
-        echo "</br>";
+        // echo "테이블 갯수는 = ".$count;
+        // echo "</br>";
 
         for($i=0; $i<$count; $i++){
             $row = mysqli_fetch_object($result);  // 
