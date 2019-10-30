@@ -1,34 +1,30 @@
 <?php
 
 $config = include "../dbconf.php";
-// echo "대림대학교";
-// print_r($config);
+
 require "../Loading.php";
 /*
 require "../Module/Database/database.php"; // 1개
 require "../Module/Database/table.php"; // 2개
 */
-$db = new \Module\Database\Database( $config );
-$html = new \Module\Html\HtmlTable;
 
-// echo "<br>";
-$query = "SHOW TABLES";
-$result = $db->queryExecute($query);
-$count = mysqli_num_rows($result);
-$content = ""; // 초기화
-$rows = []; // 배열 초기화
-for ($i=0;$i<$count;$i++) {
-    $row = mysqli_fetch_object($result);
-    $rows []= $row; // 배열 추가
-    /*
-    $content .= "<tr>";
-    $content .= "<td>$i</td>";
-    $content .= "<td>".$row->Tables_in_php."</td>";
-    $content .= "</tr>";
-    */
+$uri = $_SERVER['REQUEST_URI'];
+$uris = explode("/", $uri); //uri의 문자열을 '/' 기준으로 짤라낼꺼다 .
+print_r($uris);
+
+$db = new \Module\Database\Database($config);
+
+if(isset($uris[1]) && $uris[1]){ // 배열이 있냐 확인, 배열값이 있냐없냐 확인
+    echo $uris[1]."컨트롤러 실행 ...";
+    $controllerName = "\App\Controller\\" . ucfirst($uris[1]);
+    echo $controllerName;
+    $tables = new $controllerName ($db);
+    $tables->main();
+}else{
+    // echo "처음 페이지 에요";
+    $body = file_get_contents("../Resource/index.html");
+    echo $body;
 }
-$content = $html->table($rows);
 
-$body = file_get_contents("../Resource/table.html");
-$body = str_replace("{{content}}",$content, $body); // 데이터 치환
-echo $body;
+// $desc = new \App\Controller\TableInfo;
+// $desc->main();
