@@ -15,11 +15,13 @@ class TableInfo
     {
         // echo "메인 호출이에요.";
         
-        
         $html = new \Module\Html\HtmlTable;
 
+        $uri = $_SERVER['REQUEST_URI'];
+        $uris = explode("/", $uri);
+
         // echo "<br>";
-        $query = "DESC members";
+        $query = "DESC " . $uris[2];
         $result = $this->db->queryExecute($query);
         $count = mysqli_num_rows($result);
         $content = ""; // 초기화

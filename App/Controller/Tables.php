@@ -27,8 +27,8 @@ class Tables
             // 배열의 배열 추가 = 2차원 배열
             // 키 , 값  연상배열
             $rows [] = [
-                'num' => $i ,
-                'name' => "<a href='/TableInfo/'".$row->Tables_in_php.">".$row->Tables_in_php."</a>"
+                'Key 값' => $i ,
+                '테이블명' => "<a href='/TableInfo/".$row->Tables_in_php."'>".$row->Tables_in_php."</a>"
             ];
         }
         $content = $html->table($rows);
