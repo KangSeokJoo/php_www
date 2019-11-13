@@ -11,8 +11,11 @@ class Uri
 
     public function __construct()
     {
-        echo __CLASS__;
-        $this->uri = $_SERVER['REQUEST_URI'];
+        // echo __CLASS__;
+        // 쿼리스트링 부분, 분리함
+        $uri = explode("?",$_SERVER['REQUEST_URI']);
+
+        $this->uri = $uri[0]; // 실제 uri 부분만 저장
 
         $this->uris = explode("/", $this->uri);
         unset($this->uris[0]);
@@ -34,6 +37,13 @@ class Uri
     {
         if(isset($this->uris[3]) && $this->uris[3]){ // 3번쨰 값이 존재 , 있으면
             return $this->uris[3];
+        }
+    }
+
+    public function fourth()
+    {
+        if(isset($this->uris[4]) && $this->uris[4]){ // 4번쨰 값이 존재 , 있으면
+            return $this->uris[4];
         }
     }
 }
