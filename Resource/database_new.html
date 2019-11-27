@@ -14,12 +14,11 @@
   </head>
   <body>
     <div class="container">
-      <h1>데이터베이스 목록</h1>
-      {{content}}
-
-      <button type="button" class="btn btn-outline-primary" id="addNew">
-        데이터베이스 추가
-      </button>
+      <h1>데이터베이스 추가</h1>
+      <form action="/databases/new" method="post">
+        <input type="text" name="database" />
+        <input type="submit" value="생성" />
+      </form>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -18,9 +18,10 @@
       {{content}}
 
       <button type="button" class="btn btn-outline-primary" id="addNew">
-        데이터베이스 추가
+        데이타베이스 추가
       </button>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -40,7 +41,7 @@
     <script>
       const addBtn = document.getElementById("addNew");
       addBtn.addEventListener("click", function() {
-        alert("새로운 데이터베이스를 추가합니다.");
+        alert("새로운 테이블을 생성합니다.");
         document.location.href = "/databases/new";
       });
     </script>

@@ -58,16 +58,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
-          <h2 class="my-4">DB Admin</h2>
+          <h1 class="my-4">DBAdmin</h1>
           <div class="list-group">
-            <a href="/tables" class="list-group-item">테이블 목록</a>
-            <a href="/select" class="list-group-item">데이터 조회</a>
+            <a href="/tables" class="list-group-item">테이블목록</a>
+            <a href="/select" class="list-group-item">데이터조회</a>
             <a href="/structure" class="list-group-item">DB구조</a>
           </div>
         </div>
         <div class="col-sm-10">
           <h1>테이블 목록</h1>
           {{content}}
+
+          <button type="button" class="btn btn-outline-primary" id="addNew">
+            테이블 추가
+          </button>
         </div>
       </div>
     </div>
@@ -87,5 +91,13 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const addBtn = document.getElementById("addNew");
+      addBtn.addEventListener("click", function() {
+        alert("새로운 테이블을 생성합니다.");
+        document.location.href = "/tables/new";
+      });
+    </script>
   </body>
 </html>
